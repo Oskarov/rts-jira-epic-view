@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=1000, initial-scale=1.0"/>
+    <title>Popup Page</title>
+</head>
+<body>
+<div id="root"></div>
+<style>
+    body {
+        margin: 0;
+    }
+
+    .table_holder {
+        padding: 8px;
+        overflow: scroll;
+        width: 100%;
+        height: 100vh;
+    }
+
+    table {
+        border: 1px solid black;
+        border-radius: 6px;
+        overflow: hidden;
+        border-collapse: collapse;
+    }
+
+    table > tr > th {
+        border: 2px solid black;
+        padding: 4px 8px;
+
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    table > tr > td {
+        border: 1px solid black;
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    td.th_small, th.th_small{
+        min-width: 100px;
+    }
+
+    td.th_medium, th.th_medium{
+        min-width: 250px;
+    }
+
+    td.th_rose, th.th_rose{
+        background-color: #fbe4d4;
+    }
+</style>
+<script src="index.tsx"></script>
+</body>
+</html>
