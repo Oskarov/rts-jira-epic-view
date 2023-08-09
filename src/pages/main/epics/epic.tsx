@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import MainTable                    from "./mainTable/mainTable";
-import {IIssue, IJiraIssues}        from "../../../interfaces/IIssue";
+import {IIssue}        from "../../../interfaces/IIssue";
 
 interface EpicsProps {
 
@@ -46,8 +46,27 @@ const Epics: React.FC<EpicsProps> = ({}) => {
 
     return <div>
         {data && <MainTable data={data}/>}
-        {!data && <div>
-            <span>Загрузка {loaded}/{sum}</span>
+        {!data && <div className='loading_screen'>
+            <div>
+                <div className="spinner-box">
+                    <div className="blue-orbit leo">
+                    </div>
+
+                    <div className="green-orbit leo2">
+                    </div>
+
+                    <div className="red-orbit leo">
+                    </div>
+
+                    <div className="white-orbit w1 leo">
+                    </div>
+                    <div className="white-orbit w2 leo">
+                    </div>
+                    <div className="white-orbit w3 leo">
+                    </div>
+                </div>
+                <div>{loaded*100/sum || 0} %</div>
+            </div>
         </div>}
     </div>;
 }

@@ -9,10 +9,10 @@ const MainTable: React.FC<MainTableProps> = ({data}) => {
     return <div className="table_holder">
         <table>
             <tr>
+                <th className="th_small">Квартал</th>
                 <th className="th_medium">Инициатива</th>
                 <th className="th_medium">Ссылка на задачу в Jira</th>
                 <th className="th_medium">DoD (конкретный перечень результатов после выполнения инициативы)</th>
-                <th className="th_medium">Комментарий</th>
                 <th className="th_small">Команда</th>
                 <th className="th_small">Лид трайб</th>
                 <th className="th_small">Impact</th>
@@ -38,19 +38,25 @@ const MainTable: React.FC<MainTableProps> = ({data}) => {
             </tr>
             {data.length && data.map(issue=>{
                 return <tr key={issue.key}>
+                    <td className="th_small">{issue.fields.components.map(component=><div key={component.id}>
+                        {component.name}
+                    </div>)}</td>
                     <td className="th_medium">{issue.fields.summary}</td>
                     <td className="th_medium"><a href={`https://jira.eapteka.ru/browse/${issue.key}`} target='_blank'>https://jira.eapteka.ru/browse/${issue.key}</a></td>
-                    <td>инициатива</td>
-                    <td>комментарий</td>
-                    <td>команда</td>
-                    <td>Лид Трайб</td>
-                    <td>impact</td>
-                    <td>Confidence</td>
-                    <td>Effort</td>
-                    <td className="th_small">ICE</td>
+                    <td>{issue.fields.description}</td>
+                    <td>{issue.fields.customfield_13927 && issue.fields.customfield_13927.map(component=><div key={component.id}>
+                        {component.value}
+                    </div>)}</td>
+                    <td>{issue.fields.customfield_13928 && issue.fields.customfield_13928.map(component=><div key={component.id}>
+                        {component.value}
+                    </div>)}</td>
+                    <td>{issue.fields.customfield_14312 || ''}</td>
+                    <td>{issue.fields.customfield_14313 || ''}</td>
+                    <td>{issue.fields.customfield_14311 || ''}</td>
+                    <td className="th_small">{issue.fields.customfield_14305 || ''}</td>
                     <td className="th_small">Владелец инициативы</td>
-                    <td className="th_small">{issue.fields.labels.map(label=><div key={`${issue.key}-${label}`}>
-                        {label}
+                    <td className="th_small">{issue.fields.labels.filter(label=>['techdebt', 'product', 'tech-debt'].includes(label.toLowerCase())).map(label=><div key={`${issue.key}-${label}`}>
+                        {label.toLowerCase()}
                     </div>)}</td>
                     <td className="th_medium">Согласовано со смежными подразделениями (DoD: есть подтверждение по плану на квартал и оценка) -
                         смежные команды подразделения указаны справа
