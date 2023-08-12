@@ -68,11 +68,12 @@ export interface IIssue {
         },
         customfield_13928: ITraib[],
         customfield_13927: ITeam[],
-        customfield_14311: null | number //Effort
-        customfield_14312: null | number //Impact
-        customfield_14313: null | number //Confidence
-        customfield_14305: null | number //ICE
-        subtasks: ISubTask[]
+        customfield_14311: null | customJiraField //Effort
+        customfield_14312: null | customJiraField //Impact
+        customfield_14313: null | customJiraField //Confidence
+        customfield_14305: null | customJiraField //ICE
+        subtasks: ISubTask[],
+        subEpics: IIssue[] | null,
     }
 }
 
@@ -100,4 +101,19 @@ export interface ISubTask{
     self: string,
     id: string,
     key: string
+}
+
+export interface customJiraField {
+    disabled: boolean,
+    id: string,
+    self: string,
+    value: string
+}
+
+export interface IMetaInformation {
+    fields:{
+        customfield_13927: { //Команды
+            allowedValues: customJiraField[]
+        }
+    }
 }

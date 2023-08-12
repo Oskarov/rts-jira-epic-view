@@ -32,28 +32,29 @@
 
     .table_holder {
         padding: 8px;
-        overflow: scroll;
-        height: 97vh;
+        background: white;
     }
 
     table {
-        border: 1px solid black;
+        position: relative;
         border-radius: 6px;
-        overflow: hidden;
         border-collapse: collapse;
+        background: white;
     }
 
-    table > tr > th {
-        border: 2px solid black;
-        padding: 4px 8px;
+    table th {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+    }
 
+
+    table tr > th {
         font-size: 14px;
         font-weight: bold;
     }
 
-    table > tr > td {
-        border: 1px solid black;
-        padding: 4px 8px;
+    table tr > td {
         font-size: 12px;
     }
 
@@ -67,6 +68,56 @@
 
     td.th_rose, th.th_rose {
         background-color: #fbe4d4;
+    }
+
+    td{
+        position: relative;
+        animation-duration: 500ms;
+    }
+
+  /*  td:hover::before {
+          background-color: rgba(238, 238, 238, 0.35);
+          content: '';
+          height: 100%;
+          left: -5000px;
+          position: absolute;
+          top: 0;
+          width: 10000px;
+          z-index: 4;
+      }
+
+      td:hover::after {
+          background-color: rgba(255, 255, 170, 0.35);
+          content: '';
+          height: 10000px;
+          left: 0;
+          position: absolute;
+          top: -5000px;
+          width: 100%;
+          z-index: 4;
+      }*/
+
+    table{
+        border: 1px solid #eee;
+        table-layout: fixed;
+    }
+    table th {
+        font-weight: bold;
+        padding: 5px;
+        background: #efefef;
+        border: 1px solid #efefef;
+        outline: 1px solid #dddddd;
+    }
+    table td{
+        padding: 5px 10px;
+        border: 1px solid #eee;
+        text-align: left;
+    }
+    table tr:nth-child(odd){
+        background: #fff;
+    }
+    table tr:nth-child(even){
+        background: #F7F7F7;
     }
 </style>
 <script src="index.tsx"></script>
